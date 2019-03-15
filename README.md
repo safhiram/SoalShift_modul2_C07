@@ -95,7 +95,47 @@ Per menit memasukkan log#.log ke dalam folder tersebut
 ‘#’ : increment per menit. Mulai dari 1
 Buatlah program c untuk menghentikan program di atas.
 NB: Dilarang menggunakan crontab dan tidak memakai argumen ketika menjalankan program.
-
 </p>
 <h4>PENJELASAN</h4>
+<p>1. Awalnya kita harus menyimpan nilai dari waktu sekarang</p>
 
+```
+	time_t t = time(NULL);
+	struct tm tm = *localtime(&t);
+```
+
+<p>2. simpan nama folder yang akan dibuat dan buat folder log</p>
+
+```
+snprintf(namafile, sizeof(namafile), "/home/safhiram/log/%02d:%02d:%04d-%02d:%02d", tm.tm_mday,tm.tm_mon + 1, tm.tm_year + 1900, tm.tm_hour, tm.tm_min);
+
+mkdir("/home/safhiram/log",0777);
+
+```
+
+<p>3. simpan nama file yang akan dibuat. lakukan proses exec untuk menyalin file dari /var/log/syslol ke folder yang tadi dibuat</p>
+
+```
+	snprintf(hehe, sizeof(hehe), "/home/safhiram/log/%02d:%02d:%04d-%02d:%02d/", tm.tm_mday,tm.tm_mon + 1, tm.tm_year + 1900, tm.tm_hour, tm.tm_min);	
+			snprintf(tambahan,sizeof(tambahan),"log%d.log",i);
+			strcat(hehe,tambahan);
+			if(fork()==0)
+			{
+				execlp("cp","cp","/var/log/syslog", hehe, NULL);
+			}
+
+```
+
+<p>4. jika file sudah lebih dari 30 atau sudah 30 menit berjalan, maka buat folder baru.</p>
+
+```
+			if(i > 30)
+			{
+				i=1;
+				t=time(NULL);
+				tm = *localtime(&t);
+				snprintf(namafile, sizeof(namafile), "/home/safhiram/log/%02d:%02d:%04d-%02d:%02d", tm.tm_mday,tm.tm_mon + 1, tm.tm_year + 1900, tm.tm_hour, tm.tm_min);
+				mkdir(namafile,0777);
+				
+			}
+```
