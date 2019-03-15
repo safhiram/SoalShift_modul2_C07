@@ -74,7 +74,7 @@ int main() {
                                 strcpy(from, "/home/safhiram/foldergambar/");
                                 strcpy(dest,"/home/safhiram/modul2/gambar/");
 
-                                if(strstr(nama,".png"))
+                                if(strstr(&nama[strlen(nama)-5],".png")!=NULL)
                                 {
                                         int jumlah = strlen(nama);
                                         strcat(from,nama);
