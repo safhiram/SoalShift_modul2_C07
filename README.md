@@ -149,7 +149,15 @@ dilarang menggunakan crontab
 Contoh nama file : makan_sehat1.txt, makan_sehat2.txt, dst
 </p>
 <h4>PENJELASAN</h4>
-
+<p>1. membuat folder "makanan"</p>
+<p>2. memasukan file "makan_enak.txt"</p>
+<p>3. buat file c </p>
+<p>a. membuat variabel waktu terakhir file "makan_enak.txt" dibuka, dan variabel waktu sekarang</p>
+<p>b. jika selisih waktu tersebut kurang dari 30 jalankan step selanjutnya </p>
+<p>c. buat variabel char "makan_sehat"</p>
+<p>d. tambahkan "makan_sehat" dengan bilangan dan ".txt"</p>
+<p>e. buat file dengan nama variabel yang sudah kita buat</p>
+<p> selesai! berhasil diet!</p>
 <hr>
 <h3>NOMOR 5</h3>
 <h4>SOAL</h4>
