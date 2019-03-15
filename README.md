@@ -67,6 +67,60 @@ Gunakan pipe
 Pastikan file daftar.txt dapat diakses dari text editor
 </p>
 <h4>PENJELASAN</h4>
+<p>1. Unzip file dengan melakukan proses exec</p>
+
+```
+         	char *un[3] = {"unzip","campur2.zip",NULL};
+          	execv("/usr/bin/unzip",un);
+```
+
+<p>2. panggil fungsi pipe untuk membuka pipe tersebut. buat child untuk proses ke dua</p>
+
+```
+	pipe(file1);
+    pipe(file2);
+```
+
+<p>3. pada proses di child, lakukan ls pada folder campur2 kita menggunakan file1[1] untuk menerima write output into buffer. Sehingga file1[0] dalam kondisi read</p>
+
+```
+			close(file1[0]);
+            dup2(file1[1],STDOUT_FILENO);
+            close(file1[1]);
+
+	    execlp("ls","ls","campur2",NULL);
+```
+
+<p>4. buat child lagi untuk melakukan proses exec grep. file1[0] sebagai read into buffer di STDIN_FILENO. Selanjutnya, file2[1] menerima write outputnya. Lalu lakukan grep</p>
+
+```
+					close(file1[1]);
+                	dup2(file1[0],STDIN_FILENO);
+                	close(file1[0]);
+
+                	close(file2[0]);
+                	dup2(file2[1],STDOUT_FILENO);
+                	close(file2[1]);
+
+
+                	char *grep[]={"grep",".txt$", NULL};
+                	execv("/bin/grep",grep);
+```
+
+<p>5. pada parent nya, taruh isi dari file2[0] ke data.txt dengan menggunakan fprintf </p>
+
+```
+			FILE* isifile=fdopen(file2[0],"r");
+			FILE *daftar=fopen("daftar.txt","w");
+			while(fgets(isi, sizeof(isi), isifile)!=NULL)
+			{
+				if(strstr(&isi[strlen(isi)-5],".txt")!=NULL)
+				{
+					fprintf(daftar,"%s",isi);
+				}
+			}
+			
+```
 
 <hr>
 <h3>NOMOR 4</h3>
