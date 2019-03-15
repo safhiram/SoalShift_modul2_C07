@@ -205,3 +205,8 @@ mkdir("/home/safhiram/log",0777);
 				
 			}
 ```
+<p>5b. penghentian proses dengan menggunakan exec dengan perintah pkill</p>
+
+```
+execlp("pkill", "pkill", "-f", "soal5",NULL);
+```
