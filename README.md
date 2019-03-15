@@ -52,6 +52,18 @@ digunakan pada saat memindah file. Sekaligus string untuk menyimpan nama  file</
 <p>Pada suatu hari Kusuma dicampakkan oleh Elen karena Elen dimenangkan oleh orang lain. Semua kenangan tentang Elen berada pada file bernama “elen.ku” pada direktori “hatiku”. Karena sedih berkepanjangan, tugas kalian sebagai teman Kusuma adalah membantunya untuk menghapus semua kenangan tentang Elen dengan membuat program C yang bisa mendeteksi owner dan group dan menghapus file “elen.ku” setiap 3 detik dengan syarat ketika owner dan grupnya menjadi “www-data”. Ternyata kamu memiliki kendala karena permission pada file “elen.ku”. Jadi, ubahlah permissionnya menjadi 777. Setelah kenangan tentang Elen terhapus, maka Kusuma bisa move on.
 Catatan: Tidak boleh menggunakan crontab</p>
 <h4>PENJELASAN</h4>
+<p> 1. Buat direktori dengan nama "hatiku" dengan mkdir</p>
+<p> 2. Masuk ke folder "hatiku" dan buat file "elen.ku" dengan touch </p>
+<p> 3. Buat code c dengan menggunakan daemon yang di sleep setiap 3 detik </p>
+<p> isi code c: </p>
+<p> a. masuk ke folder "hatiku"</p>
+<p> b. membaca isi folder "hatiku", apakah ada file "elen.ku" atau tidak</p>
+<p> c. jika ada, mengecek owner dan grup </p>
+<p> d. Mengubah permission menjadi 777 dengan chmod</p>
+<p> e. Menghapus file "elen.ku" dengan remove  </p>
+<p>  Akhirnya kusuma bisa muvonn </p>
+
+
 
 <hr>
 <h3>NOMOR 3</h3>
